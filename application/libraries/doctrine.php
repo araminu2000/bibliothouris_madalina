@@ -13,7 +13,7 @@ class Doctrine
 
     public $em = null;
 
-    public function __construct()
+    public function __construct( $connectionConf = null )
     {
         // load database configuration from CodeIgniter
         require_once APPPATH . 'config/database.php';
@@ -50,13 +50,23 @@ class Doctrine
         $config->setAutoGenerateProxyClasses(TRUE);
 
         // Database connection information
-        $connectionOptions = array(
-            'driver' => 'pdo_mysql',
-            'user' => $db['default']['username'],
-            'password' => $db['default']['password'],
-            'host' => $db['default']['hostname'],
-            'dbname' => $db['default']['database']
-        );
+        if (is_null($connectionConf)) {
+            $connectionOptions = array(
+                'driver' => 'pdo_mysql',
+                'user' => $db['default']['username'],
+                'password' => $db['default']['password'],
+                'host' => $db['default']['hostname'],
+                'dbname' => $db['default']['database']
+            );
+        } else {
+            $connectionOptions = array(
+                'driver' => 'pdo_mysql',
+                'user' => $connectionConf['user'],
+                'password' => $connectionConf['password'],
+                'host' => $connectionConf['host'],
+                'dbname' => $connectionConf['dbname']
+            );
+        }
 
         // Create EntityManager
         $this->em = EntityManager::create($connectionOptions, $config);
