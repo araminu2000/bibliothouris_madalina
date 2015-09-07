@@ -5,8 +5,6 @@ class Test extends CI_Controller {
 
 	public function index()
 	{
-        $this->load->library('doctrine');
-
         var_dump($this->doctrine->em);
 
 
