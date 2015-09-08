@@ -7,7 +7,6 @@ namespace Entity;
  *
  * @Entity
  * @Table(name="user")
- * @author
  */
 class User
 {

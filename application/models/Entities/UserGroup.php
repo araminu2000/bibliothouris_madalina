@@ -9,7 +9,6 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @Entity
  * @Table(name="user_group")
- * @author
  */
 class UserGroup
 {
@@ -41,7 +40,6 @@ class UserGroup
     {
         $this->users = new ArrayCollection;
     }
-
 
     /**
      * Get id
@@ -78,7 +76,7 @@ class UserGroup
     /**
      * Add users
      *
-     * @param Entity\User $users
+     * @param \Entity\User $users
      * @return Group
      */
     public function addUser(\Entity\User $users)
